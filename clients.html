@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Cash | Clients</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
+   <!-- DataTables CSS -->
+   <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+   <!-- DataTables Buttons CSS (pour l'exportation) -->
+   <link href="https://cdn.datatables.net/buttons/2.3.1/css/buttons.dataTables.min.css" rel="stylesheet">
+ 
+    <link href="assets/css/styles.css" rel="stylesheet" >
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+      <button class="btn btn-outline-primary d-lg-none" id="toggle-sidebar">☰</button>
+      <a class="navbar-brand" href="#">Top Cash Transfert</a>
+      <div class="dropdown ms-auto">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+          <li><h6 class="dropdown-header">Utilisateur : <span class="fw-bold">John Doe</span></h6></li>
+          <li><h6 class="dropdown-header">Gain : <span class="fw-bold">15,000 HTG</span></h6></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item btn btn-primary text-primary">Retrait</button></li>
+          <li><button class="dropdown-item btn btn-danger text-danger">Déconnexion</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <nav>
+        <ul class="nav flex-column px-3">
+          <li class="nav-item "><a href="acceuil.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+          <li class="nav-item active"><a href="clients.html" class="nav-link"><i class="bi bi-person-fill me-2"></i>Clients</a></li>
+          <li class="nav-item"><a href="transactions.html" class="nav-link"><i class="bi bi-arrow-left-right me-2"></i>Transactions</a></li>
+          <li class="nav-item"><a href="statistiques.html" class="nav-link"><i class="bi bi-bar-chart me-2"></i>Statistiques</a></li>
+          <li class="nav-item"><a href="parametres.html" class="nav-link"><i class="bi bi-gear-fill me-2"></i>Paramètres</a></li>
+        </ul>
+      </nav>
+  </div>
+
+  <div class="content">
+    <div class="container-fluid">
+  <div class="content-wrapper">
+    <!-- Main Content -->
+    <main class="container mt-5">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <h3>Liste des Clients</h3>
+          <!-- Tableau Client -->
+           <div class="table-responsive">
+            <table id="clientTable" class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Numéro d'identification</th>
+                    <th>Téléphone</th>
+                    <th>Ville</th>
+                    <th>Transfert</th> <!-- Nouvelle colonne pour le badge de transfert -->
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Exemple de ligne -->
+                  <tr>
+                    <td>1</td>
+                    <td>Dupont</td>
+                    <td>Jean</td>
+                    <td>123456789</td>
+                    <td>123-456-7890</td>
+                    <td>Port-au-Prince</td>
+                    <td>
+                      <span class="badge bg-primary">5</span> <!-- Nombre de transferts -->
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-warning" title="Modifier">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-sm btn-danger" title="Supprimer">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#transfertModal">
+                        <i class="bi bi-cash"></i> Transfert
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Claude</td>
+                    <td>Marie</td>
+                    <td>987654321</td>
+                    <td>987-654-3210</td>
+                    <td>Jacmel</td>
+                    <td>
+                      <span class="badge bg-primary">2</span> <!-- Nombre de transferts -->
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-warning" title="Modifier">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-sm btn-danger" title="Supprimer">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                      <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#transfertModal">
+                        <i class="bi bi-cash"></i> Transfert
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+           </div>
+        
+        </div>
+
+        <!-- Formulaire d'ajout d'un nouveau client -->
+        <div class="col-12">
+          <h5>Ajouter un nouveau client</h5>
+          <form action="#" method="POST" class="d-flex flex-column align-items-start">
+            <!-- Photo (ou fichier) -->
+            <div class="mb-3 w-100">
+                <label for="photo" class="form-label">Photo (Piece d'indentification)</label>
+                <div class="dropzone" id="myDropzone"></div>
+            </div>
+        
+            <!-- Ligne avec le Nom et Prénom -->
+            <div class="row w-100 mb-3">
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" placeholder="Nom du client" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="prenom" placeholder="Prénom du client" required>
+                </div>
+            </div>
+        
+            <!-- Ligne avec le Numéro d'identification et Téléphone -->
+            <div class="row w-100 mb-3">
+                <div class="col-md-6">
+                    <label for="idNumber" class="form-label">Numéro d'identification</label>
+                    <input type="text" class="form-control" id="idNumber" placeholder="Numéro d'identification" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="telephone" class="form-label">Téléphone</label>
+                    <input type="tel" class="form-control" id="telephone" placeholder="Téléphone du client" required>
+                </div>
+            </div>
+        
+            <!-- Ligne avec la Ville -->
+            <div class="row w-100 mb-3">
+                <div class="col-md-6">
+                    <label for="ville" class="form-label">Ville</label>
+                    <input type="text" class="form-control" id="ville" placeholder="Ville du client" required>
+                </div>
+            </div>
+        
+            <!-- Bouton Ajouter Client -->
+            <button type="submit" class="btn btn-primary w-100">Ajouter Client</button>
+        </form>
+        
+          
+        </div>
+      </div>
+    </main>
+  </div>
+  </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vfs-fonts/2.0.3/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.print.min.js"></script>
+
+  <script>
+    // Initialisation de DataTable avec options d'exportation
+    $(document).ready(function() {
+      $('#clientTable').DataTable({
+        dom: 'Bfrtip', // Cette option définit l'emplacement des éléments de table
+        buttons: [
+          'copy', // Copie les données
+          'csv',  // Exportation au format CSV
+          'excel',// Exportation au format Excel
+          'pdf',  // Exportation au format PDF
+          'print' // Impression de la table
+        ]
+      });
+    });
+ 
+    // Initialisation de Dropzone
+    Dropzone.options.myDropzone = {
+      url: '/file/post', // URL d'envoi des fichiers (à ajuster selon ton backend)
+      maxFilesize: 2, // Taille max du fichier en Mo
+      acceptedFiles: 'image/*,application/pdf', // Types de fichiers acceptés
+      addRemoveLinks: true
+    };
+
+    const sidebar = document.querySelector('.sidebar');
+    const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+    const contentWrapper = document.querySelector('.content-wrapper');
+
+    toggleSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+      contentWrapper.classList.toggle('sidebar-visible');
+    });
+  </script>
+</body>
+</html>
+ <!-- Modal Transfert -->
+ <div class="modal fade" id="transfertModal" tabindex="-1" aria-labelledby="transfertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="transfertModalLabel">Transfert d'argent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de Transfert -->
+          <form>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="numero" class="form-label">No</label>
+                <input type="number" class="form-control" id="numero" value="123456789" readonly>
+              </div>
+            </div>
+          
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="ville" class="form-label">Ville</label>
+                <select class="form-select" id="ville" required>
+                  <option value="Port-au-Prince">Port-au-Prince</option>
+                  <option value="Jacmel">Jacmel</option>
+                  <option value="Cap-Haïtien">Cap-Haïtien</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="expediteur" class="form-label">Expéditeur</label>
+                <input type="text" class="form-control" id="expediteur" value="Jean Dupont" readonly>
+              </div>
+            </div>
+          
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="beneficiaire" class="form-label">Bénéficiaire</label>
+                <input type="text" class="form-control" id="beneficiaire" required>
+              </div>
+              <div class="col-md-6">
+                <label for="telephoneBeneficiaire" class="form-label">Téléphone Bénéficiaire</label>
+                <input type="tel" class="form-control" id="telephoneBeneficiaire" required>
+              </div>
+            </div>
+          
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="montant" class="form-label">Montant</label>
+                <input type="number" class="form-control" id="montant" required>
+              </div>
+              <div class="col-md-6">
+                <label for="montantFrais" class="form-label">Montant + Frais</label>
+                <input type="text" class="form-control" id="montantFrais" value="100.00 HTG" readonly>
+              </div>
+            </div>
+          </form>
+          
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary">Valider Transfert</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

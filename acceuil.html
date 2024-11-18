@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Transfert d'Argent</title>
+  <link rel="stylesheet" href="assets/css/styles.css" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+ 
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+      <!-- Bouton de toggle pour la sidebar en mobile -->
+      <button class="btn btn-outline-primary d-lg-none" id="toggle-sidebar">☰</button>
+  
+      <!-- Nom du site -->
+      <a class="navbar-brand" href="#">Top Cash Transfert</a>
+  
+      <!-- Section droite de la navbar -->
+      <div class="dropdown ms-auto">
+        <button 
+          class="btn btn-outline-primary dropdown-toggle" 
+          type="button" 
+          id="accountDropdown" 
+          data-bs-toggle="dropdown" 
+          aria-expanded="false">
+          Account
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+          <li>
+            <h6 class="dropdown-header">Utilisateur : <span class="fw-bold">John Doe</span></h6>
+          </li>
+          <li>
+            <h6 class="dropdown-header">Gain : <span class="fw-bold">15,000 HTG</span></h6>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <button class="dropdown-item btn btn-primary text-primary">Retrait</button>
+          </li>
+          <li>
+            <button class="dropdown-item btn btn-danger text-danger">Déconnexion</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <nav>
+      <ul class="nav flex-column px-3">
+        <li class="nav-item active"><a href="acceuil.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+        <li class="nav-item"><a href="clients.html" class="nav-link"><i class="bi bi-person-fill me-2"></i>Clients</a></li>
+        <li class="nav-item"><a href="transactions.html" class="nav-link"><i class="bi bi-arrow-left-right me-2"></i>Transactions</a></li>
+        <li class="nav-item"><a href="statistiques.html" class="nav-link"><i class="bi bi-bar-chart me-2"></i>Statistiques</a></li>
+        <li class="nav-item"><a href="parametres.html" class="nav-link"><i class="bi bi-gear-fill me-2"></i>Paramètres</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="container-fluid">
+      <h1 class="header-title mb-4">Liens Rapides</h1>
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-3 col-sm-6">
+          <div class="card card-quick-link shadow-sm">
+            <div class="card-body text-center">
+              <div class="card-icon mb-3"><i class="bi bi-person-fill"></i></div>
+              <h5 class="card-title">Clients</h5>
+              <p class="card-text">Gérez les informations clients.</p>
+              <a href="#" class="btn btn-primary">Voir plus</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-3 col-sm-6">
+          <div class="card card-quick-link shadow-sm">
+            <div class="card-body text-center">
+              <div class="card-icon mb-3"><i class="bi bi-arrow-left-right"></i></div>
+              <h5 class="card-title">Transactions</h5>
+              <p class="card-text">Suivez les transferts d'argent.</p>
+              <a href="#" class="btn btn-primary">Voir plus</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-3 col-sm-6">
+          <div class="card card-quick-link shadow-sm">
+            <div class="card-body text-center">
+              <div class="card-icon mb-3"><i class="bi bi-bar-chart"></i></div>
+              <h5 class="card-title">Statistiques</h5>
+              <p class="card-text">Consultez vos données.</p>
+              <a href="#" class="btn btn-primary">Voir plus</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-3 col-sm-6">
+          <div class="card card-quick-link shadow-sm">
+            <div class="card-body text-center">
+              <div class="card-icon mb-3"><i class="bi bi-gear-fill"></i></div>
+              <h5 class="card-title">Paramètres</h5>
+              <p class="card-text">Configurez vos options.</p>
+              <a href="#" class="btn btn-primary">Voir plus</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+  <script>
+    const sidebar = document.querySelector('.sidebar');
+    const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+    toggleSidebarBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
