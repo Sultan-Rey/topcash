@@ -67,8 +67,8 @@
     document.getElementById('loginForm').addEventListener('submit', function (event) {
       event.preventDefault(); // Empêche l'envoi du formulaire par défaut
   
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim(); // Supprimer les espaces avant et après l'email
+      const password = document.getElementById('password').value.trim(); // Supprimer les espaces avant et après le mot de passe
   
       // Vérifier les informations de connexion
       if (email === 'admin@topcash.com' && password === 'pass123') {
@@ -80,6 +80,7 @@
       }
     });
   </script>
+  
   
 </body>
 </html>
